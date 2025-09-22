@@ -4,7 +4,7 @@
 bisiesto() {
 read -p "Introduce un año: " año
 
-if (( año % 4 == 0 && año % 100 != 0 || año % 400 == 0 )); then
+if (año % 4 == 0 && año % 100 != 0 || año % 400 == 0); then
     echo "El año", $año, "es bisiesto."
 else
     echo "El año", $año, "no es bisiesto."
