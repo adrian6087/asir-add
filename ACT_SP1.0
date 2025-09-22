@@ -15,55 +15,55 @@ configurarred() {
 
 }
 
-ejercicio3() {
+adivina() {
 
 }
 
-ejercicio4() {
+buscar() {
 
 }
 
-ejercicio5() {
+contar() {
 
 }
 
-ejercicio6() {
+permisosoctal() {
 
 }
 
-ejercicio7() {
+romano() {
 
 }
 
-ejercicio8() {
+automatizar() {
 
 }
 
-ejercicio9() {
+crear() {
 
 }
 
-ejercicio10() {
+crear_2() {
 
 }
 
-ejercicio11() {
+reescribir() {
 
 }
 
-ejercicio12() {
+contusu() {
 
 }
 
-ejercicio13() {
+quita_blancos() {
 
 }
 
-ejercicio14() {
+lineas() {
 
 }
 
-ejercicio15() {
+analizar() {
 
 }
 
@@ -74,20 +74,20 @@ while true; do
     echo "     MENÚ DE EJERCICIOS"
     echo "=============================="
     echo "1) Bisiesto"
-    echo "2) Configurar Red"
-    echo "3) Procesos más pesados"
-    echo "4) Contar archivos"
-    echo "5) Comprobar archivo"
-    echo "6) Calcular factorial"
-    echo "7) IPs activas"
-    echo "8) Texto a mayúsculas"
-    echo "9) Sumar números"
-    echo "10) Archivos modificados hoy"
-    echo "11) Usuario actual"
-    echo "12) Últimos comandos"
-    echo "13) Verificar paquete"
-    echo "14) Crear directorio con fecha"
-    echo "15) Ordenar nombres"
+    echo "2) Configurar red"
+    echo "3) Adivina número"
+    echo "4) Buscar fichero"
+    echo "5) Contar ficheros"
+    echo "6) Permisos fichero (octal)"
+    echo "7) Número romano"
+    echo "8) Automatizar"
+    echo "9) Crear"
+    echo "10) Crear 2"
+    echo "11) Reescribir"
+    echo "12) Contar usuarios"
+    echo "13) Quitar blancos"
+    echo "14) Dibujar lineas"
+    echo "15) Analizar arbol"
     echo "0) Salir"
     echo "=============================="
     read -p "Elige una opción (0-15): " opcion
@@ -95,19 +95,19 @@ while true; do
     case $opcion in
         1) bisiesto ;;
         2) configurarred ;;
-        3) ejercicio3 ;;
-        4) ejercicio4 ;;
-        5) ejercicio5 ;;
-        6) ejercicio6 ;;
-        7) ejercicio7 ;;
-        8) ejercicio8 ;;
-        9) ejercicio9 ;;
-        10) ejercicio10 ;;
-        11) ejercicio11 ;;
-        12) ejercicio12 ;;
-        13) ejercicio13 ;;
-        14) ejercicio14 ;;
-        15) ejercicio15 ;;
+        3) adivina ;;
+        4) buscar ;;
+        5) contar ;;
+        6) permisosoctal ;;
+        7) romano ;;
+        8) automatizar ;;
+        9) crear ;;
+        10) crear_2 ;;
+        11) reescribir ;;
+        12) contusu ;;
+        13) quita_blancos ;;
+        14) lineas ;;
+        15) analizar ;;
         0) echo "Saliendo..."; exit 0 ;;
         *) echo "Opción no válida";;
     esac
