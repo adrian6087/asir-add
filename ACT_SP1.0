@@ -2,12 +2,12 @@
 
 # Funciones para cada ejercicio
 bisiesto() {
-read -p "Introduce un año: " año
+read -p "Introduce un año: " ano
 
-if (( año % 4 == 0 && año % 100 != 0 || año % 400 == 0 )); then
-    echo "El año", $año, "es bisiesto."
+if (( ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0 )); then
+    echo "El año", $ano, "es bisiesto."
 else
-    echo "El año", $año, "no es bisiesto."
+    echo "El año", $ano, "no es bisiesto."
 fi
 }
 
