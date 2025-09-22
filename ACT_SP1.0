@@ -1,11 +1,16 @@
 #!/bin/bash
 
 # Funciones para cada ejercicio
-ejercicio1() {
-
+bisiesto() {
+año=$1
+if (( año % 4 == 0 && año % 100 != 0 || año % 400 == 0 )); then
+    echo "El año $año es bisiesto."
+else
+    echo "El año $año no es bisiesto."
+fi
 }
 
-ejercicio2() {
+configurarred() {
 
 }
 
@@ -67,8 +72,8 @@ while true; do
     echo "=============================="
     echo "     MENÚ DE EJERCICIOS"
     echo "=============================="
-    echo "1) Fecha y hora actual"
-    echo "2) Espacio en disco"
+    echo "1) Bisiesto"
+    echo "2) Configurar Red"
     echo "3) Procesos más pesados"
     echo "4) Contar archivos"
     echo "5) Comprobar archivo"
@@ -87,8 +92,8 @@ while true; do
     read -p "Elige una opción (0-15): " opcion
 
     case $opcion in
-        1) ejercicio1 ;;
-        2) ejercicio2 ;;
+        1) bisiesto ;;
+        2) configurarred ;;
         3) ejercicio3 ;;
         4) ejercicio4 ;;
         5) ejercicio5 ;;
