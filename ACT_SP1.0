@@ -11,62 +11,6 @@ else
 fi
 }
 
-configurarred() {
-
-}
-
-adivina() {
-
-}
-
-buscar() {
-
-}
-
-contar() {
-
-}
-
-permisosoctal() {
-
-}
-
-romano() {
-
-}
-
-automatizar() {
-
-}
-
-crear() {
-
-}
-
-crear_2() {
-
-}
-
-reescribir() {
-
-}
-
-contusu() {
-
-}
-
-quita_blancos() {
-
-}
-
-lineas() {
-
-}
-
-analizar() {
-
-}
-
 # Menú principal
 while true; do
     clear
