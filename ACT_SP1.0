@@ -1,1 +1,110 @@
+#!/bin/bash
 
+# Funciones para cada ejercicio
+ejercicio1() {
+
+}
+
+ejercicio2() {
+
+}
+
+ejercicio3() {
+
+}
+
+ejercicio4() {
+
+}
+
+ejercicio5() {
+
+}
+
+ejercicio6() {
+
+}
+
+ejercicio7() {
+
+}
+
+ejercicio8() {
+
+}
+
+ejercicio9() {
+
+}
+
+ejercicio10() {
+
+}
+
+ejercicio11() {
+
+}
+
+ejercicio12() {
+
+}
+
+ejercicio13() {
+
+}
+
+ejercicio14() {
+
+}
+
+ejercicio15() {
+
+}
+
+# Menú principal
+while true; do
+    clear
+    echo "=============================="
+    echo "     MENÚ DE EJERCICIOS"
+    echo "=============================="
+    echo "1) Fecha y hora actual"
+    echo "2) Espacio en disco"
+    echo "3) Procesos más pesados"
+    echo "4) Contar archivos"
+    echo "5) Comprobar archivo"
+    echo "6) Calcular factorial"
+    echo "7) IPs activas"
+    echo "8) Texto a mayúsculas"
+    echo "9) Sumar números"
+    echo "10) Archivos modificados hoy"
+    echo "11) Usuario actual"
+    echo "12) Últimos comandos"
+    echo "13) Verificar paquete"
+    echo "14) Crear directorio con fecha"
+    echo "15) Ordenar nombres"
+    echo "0) Salir"
+    echo "=============================="
+    read -p "Elige una opción (0-15): " opcion
+
+    case $opcion in
+        1) ejercicio1 ;;
+        2) ejercicio2 ;;
+        3) ejercicio3 ;;
+        4) ejercicio4 ;;
+        5) ejercicio5 ;;
+        6) ejercicio6 ;;
+        7) ejercicio7 ;;
+        8) ejercicio8 ;;
+        9) ejercicio9 ;;
+        10) ejercicio10 ;;
+        11) ejercicio11 ;;
+        12) ejercicio12 ;;
+        13) ejercicio13 ;;
+        14) ejercicio14 ;;
+        15) ejercicio15 ;;
+        0) echo "Saliendo..."; exit 0 ;;
+        *) echo "Opción no válida";;
+    esac
+    echo
+    read -p "Presiona Enter para continuar..."
+done
