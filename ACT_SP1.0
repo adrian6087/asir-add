@@ -2,6 +2,8 @@
 
 # Funciones para cada ejercicio
 bisiesto() {
+read -p "Introduce un año: " año
+
 año=$1
 if (( año % 4 == 0 && año % 100 != 0 || año % 400 == 0 )); then
     echo "El año $año es bisiesto."
