@@ -11,6 +11,27 @@ else
 fi
 }
 
+configurarred(){
+#Recogida de los parametros
+read -p "Introduce una ip: " IP
+read -p "Introduce una mascara: " MASCARA
+read -p "Introduce una puerta de enlace: " PUERTA_ENLACE
+read -p "Introduce una DNS: " DNS
+
+# Configurar la IP y la máscara
+    sudo ifconfig eth0 $IP netmask $MASCARA
+
+# Configurar la puerta de enlace
+    sudo route add default gw $PUERTA_ENLACE
+
+# Configurar el DNS
+    echo "nameserver $DNS" | sudo tee /etc/resolv.conf > /dev/null
+
+# Mostrar la configuración actual
+    echo "Configuración de red actualizada:"
+    ip a
+}
+
 # Menú principal
 while true; do
     clear
