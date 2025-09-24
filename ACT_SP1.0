@@ -19,7 +19,7 @@ read -p "Introduce una puerta de enlace: " PUERTA_ENLACE
 read -p "Introduce una DNS: " DNS
 
 # Configurar la IP y la máscara
-    sudo ifconfig eth0 $IP netmask $MASCARA
+    sudo ifconfig enp0s3 $IP netmask $MASCARA
 
 # Configurar la puerta de enlace
     sudo route add default gw $PUERTA_ENLACE
