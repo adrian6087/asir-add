@@ -18,18 +18,30 @@ read -p "Introduce una mascara: " MASCARA
 read -p "Introduce una puerta de enlace: " PUERTA_ENLACE
 read -p "Introduce una DNS: " DNS
 
-# Configurar la IP y la máscara
+# Interfaz de red (puedes cambiarla si es distinta)
+INTERFAZ="eth0"
 
+echo "Configurando red..."
 
-# Configurar la puerta de enlace
+# Configurar IP y máscara
+sudo ip addr flush dev $INTERFAZ
+sudo ip addr add $IP/$MASCARA dev $INTERFAZ
 
+# Activar la interfaz
+sudo ip link set $INTERFAZ up
 
-# Configurar el DNS
+# Configurar puerta de enlace
+sudo ip route add default via $GATEWAY
 
+# Configurar DNS (sobrescribe resolv.conf)
+echo "nameserver $DNS" | sudo tee /etc/resolv.conf > /dev/null
 
-# Mostrar la configuración actual
-    echo "Configuración de red actualizada:"
-    ip a
+echo "Configuración aplicada. Mostrando configuración actual:"
+
+# Mostrar configuración actual
+ip addr show $INTERFAZ
+ip route show
+cat /etc/resolv.conf
 }
 
 # Menú principal
