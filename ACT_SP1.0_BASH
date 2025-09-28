@@ -44,8 +44,37 @@ ip route show
 cat /etc/resolv.conf
 }
 
+adivina(){
+#!/bin/bash
+
+# Número aleatorio entre 1 y 100
+NUM=$((RANDOM % 100 + 1))
+INTENTOS=1
+MAX_INTENTOS=5
+
+echo "Adivina el número (entre 1 y 100). Tienes $MAX_INTENTOS intentos."
+
+while ( $INTENTOS -le $MAX_INTENTOS ); do
+    echo -n "Intento $INTENTOS: "
+    read RESPUESTA
+
+    if ( "$RESPUESTA" -eq "$NUM" ); then
+        echo "¡Correcto! Adivinaste en $INTENTOS intento(s)."
+        exit 0
+    elif [ "$RESPUESTA" -lt "$NUM" ]; then
+        echo "El número es mayor."
+    else
+        echo "El número es menor."
+    fi
+
+    INTENTOS=$((INTENTOS + 1))
+done
+
+echo "No adivinaste. El número era: $NUM"
+}
+
 # Menú principal
-while true; do
+while ($opcion -ne 0); do
     clear
     echo "=============================="
     echo "     MENÚ DE EJERCICIOS"
