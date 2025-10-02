@@ -1,4 +1,5 @@
-function Pedir-Pizza {
+# Pedir una pizza
+function pizza {
     # Ingredientes base
     $ingbase = "mozzarella y tomate"
 
@@ -41,6 +42,24 @@ function Pedir-Pizza {
     }
 }
 
+# Calcular el número de días pares e impares que hay en un año bisiesto
+function dias {
+    $diasPares = 0
+    $diasImpares = 0
+
+    for ($i = 1; $i -le 366; $i++) {
+        if ($i % 2 -eq 0) {
+            $diasPares++
+        } else {
+            $diasImpares++
+        }
+    }
+    Write-Host "En un año bisiesto hay:"
+    Write-Host "$diasPares días pares"
+    Write-Host "$diasImpares días impares"
+}
+
+
 
 # MENU
 $opcion = 1
@@ -49,14 +68,16 @@ while ($opcion -ne '0') do {
     Write-Host "==============================" -ForegroundColor Cyan
     Write-Host "     MENÚ DE EJERCICIOS" -ForegroundColor Cyan
     Write-Host "==============================" -ForegroundColor Cyan
-    Write-Host "1) Pizza"
+    Write-Host "1) Pedir pizza"
+    Write-Host "2) Contar dias par y impar (bisiesto)"
     Write-Host "0) Salir"
     Write-Host "==============================" -ForegroundColor Cyan
 
     $opcion = Read-Host "Elige una opción (0-15)"
 
     switch ($opcion) {
-        '1'  Pedir-Pizza
+        '1'  pizza
+        '1'  dias
         '0'  {
             Write-Host "Saliendo..." -ForegroundColor Yellow
             break
