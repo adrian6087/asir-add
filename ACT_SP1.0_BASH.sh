@@ -19,7 +19,7 @@ read -p "Introduce una puerta de enlace: " PUERTA_ENLACE
 read -p "Introduce una DNS: " DNS
 
 # Interfaz de red (puedes cambiarla si es distinta)
-INTERFAZ="eth0"
+INTERFAZ="enp0s3"
 
 echo "Configurando red..."
 
