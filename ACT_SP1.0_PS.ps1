@@ -1,4 +1,4 @@
-# Pedir una pizza
+# 1. Pedir una pizza
 function pizza {
     # Ingredientes base
     $ingbase = "mozzarella y tomate"
@@ -42,7 +42,8 @@ function pizza {
     }
 }
 
-# Calcular el número de días pares e impares que hay en un año bisiesto
+
+# 2. Calcular el número de días pares e impares que hay en un año bisiesto
 function dias {
     $diasPares = 0
     $diasImpares = 0
@@ -58,6 +59,57 @@ function dias {
     Write-Host "$diasPares días pares"
     Write-Host "$diasImpares días impares"
 }
+
+
+# 3. 
+
+
+
+# 4.
+
+
+
+# 5. 
+
+
+
+# 6. 
+
+
+
+# 7. 
+
+
+
+# 8. 
+
+
+
+# 9. 
+
+
+
+# 10. 
+
+
+
+# 11. 
+
+
+
+# 12. 
+
+
+
+# 13. 
+
+
+
+# 14. 
+
+
+
+# 15. 
 
 
 
