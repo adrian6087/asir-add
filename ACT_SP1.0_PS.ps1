@@ -107,11 +107,58 @@ function menu_usuarios {
 }
 
 
-# 4. DISCOS
+# 4. Menu grupos
+
+function menu_grupos {
+    $opcion = ""
+    while ($opcion -ne "6") {
+        Clear-Host
+        Write-Host "1. Listar grupos y miembros"
+        Write-Host "2. Crear grupo"
+        Write-Host "3. Eliminar grupo"
+        Write-Host "4. Agregar usuario a grupo"
+        Write-Host "5. Eliminar usuario de grupo"
+        Write-Host "6. Salir"
+        $opcion = Read-Host "Seleccione una opción"
+
+        if ($opcion -eq "1") {
+            Get-LocalGroup | ForEach-Object {
+                Write-Host "`nGrupo: $($_.Name)"
+                Get-LocalGroupMember -Group $_.Name | ForEach-Object {
+                    Write-Host " - $($_.Name)"
+                }
+            }
+        }
+        
+        elseif ($opcion -eq "2") {
+            $nombre = Read-Host "Nombre del nuevo grupo"
+            New-LocalGroup -Name $nombre
+        }
+        
+        elseif ($opcion -eq "3") {
+            $nombre = Read-Host "Nombre del grupo a eliminar"
+            Remove-LocalGroup -Name $nombre
+        }
+    
+        elseif ($opcion -eq "4") {
+            $grupo = Read-Host "Nombre del grupo"
+            $usuario = Read-Host "Nombre del usuario"
+            Add-LocalGroupMember -Group $grupo -Member $usuario
+        }
+        
+        elseif ($opcion -eq "5") {
+            $grupo = Read-Host "Nombre del grupo"
+            $usuario = Read-Host "Nombre del usuario"
+            Remove-LocalGroupMember -Group $grupo -Member $usuario
+        }
+}
+
+
+# 5. DISCOS
 
 
 
-# 5. Contraseña valida
+# 6. Contraseña valida
 
 $contra = Read-Host "Introduce una contraseña"
 
@@ -122,7 +169,7 @@ if ($contra.Length -ge 8 && $contra -match '[a-z]' && $contra -match '[A-Z]' && 
 }
 
 
-# 6. Fibonnaci simple
+# 7. Fibonnaci simple
 
 $n = [int](Read-Host "¿Cuántos números de Fibonacci quieres? ")
 
@@ -139,7 +186,7 @@ for ($i = 0; $i -lt $n; $i++) {
 }
 
 
-# 7. Fibonacci recursivo
+# 8. Fibonacci recursivo
 
 function FibonacciRecu($n) {
     if ($n -le 1) {
@@ -156,7 +203,7 @@ for ($i = 0; $i -lt $n; $i++) {
 }
 
 
-# 8. Monitorear el uso de la CPU
+# 9. Monitorear el uso de la CPU
 
 function MonitorearCPU {
     param (
@@ -178,7 +225,7 @@ function MonitorearCPU {
 }
 
 
-# 9. Espacio libre
+# 10. Espacio libre
 
 function alertaEspacio {
     $logFile = "alerta_espacio_log.txt"
@@ -195,7 +242,7 @@ function alertaEspacio {
 }
 
 
-# 10. Copias comprimidas
+# 11. Copias comprimidas
 
 function copiasMasivas {
     $origenBase = "C:\Users"
@@ -220,23 +267,42 @@ function copiasMasivas {
 }
 
 
-# 11. 
+# 12. Crear usuarios con documentos
+
+function automatizarps {
+    $directorio = "C:\UsuariosDocs"
+    $archivos = Get-ChildItem $directorio -File
+
+    if ($archivos.Count -eq 0) {
+        Write-Host "Listado vacío"
+        return
+    }
+
+    foreach ($archivo in $archivos) {
+        $usuario = $archivo.BaseName
+        $ruta = "C:\Users\$usuario"
+
+        New-LocalUser -Name $usuario -NoPassword -ErrorAction SilentlyContinue
+        New-Item $ruta -ItemType Directory -Force | Out-Null
+
+        Get-Content $archivo.FullName | ForEach-Object {
+            New-Item "$ruta\$_" -ItemType Directory -Force | Out-Null
+        }
+
+        Remove-Item $archivo.FullName
+    }
+}
+
+
+# 13. Ping masivo
 
 
 
-# 12. 
+# 14. Evento + agenda?
 
 
 
-# 13. 
-
-
-
-# 14. 
-
-
-
-# 15. 
+# 15. Limpieza
 
 
 
@@ -249,26 +315,40 @@ while ($opcion -ne '0') do {
     Write-Host "==============================" -ForegroundColor Cyan
     Write-Host "1) Pedir pizza"
     Write-Host "2) Contar dias par y impar (bisiesto)"
+    Write-Host "3) Menu acciones con usuarios"
+    Write-Host "4) "
+    Write-Host "5) "
+    Write-Host "6) "
+    Write-Host "7) "
+    Write-Host "8) "
+    Write-Host "9) "
+    Write-Host "10) "
+    Write-Host "11) "
+    Write-Host "12) "
+    Write-Host "13) "
+    Write-Host "14) "
+    Write-Host "15) "
     Write-Host "0) Salir"
     Write-Host "==============================" -ForegroundColor Cyan
 
-    $opcion = Read-Host "Elige una opción (0-14)"
+    $opcion = Read-Host "Elige una opción (0-115)"
 
     switch ($opcion) {
         '1'  pizza
         '2'  dias
         '3'  menu_usuarios
-        '4'  diskp
-        '5'  contraseña
-        '6'  Fibonacci
-        '7'  FibonacciRecu
-        '8'  monitoreo
-        '9'  alertaEspacio
-        '10'  copiasMasivas
-        '11'  automatizarps
-        '12'  barrido
-        '13'  evento
-        '14'  limpieza
+        '4'  limpieza
+        '5'  diskp
+        '6'  contraseña
+        '7'  Fibonacci
+        '8'  FibonacciRecu
+        '9'  monitoreo
+        '10'  alertaEspacio
+        '11'  copiasMasivas
+        '12'  automatizarps
+        '13'  barrido
+        '14'  evento
+        '15'  limpieza
         '0'  {
             Write-Host "Saliendo..." -ForegroundColor Yellow
             break
