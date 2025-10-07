@@ -1,45 +1,31 @@
 # 1. Pedir una pizza
 
 function pizza {
-    # Ingredientes base
+    # Variables de ingredientes
     $ingbase = "mozzarella y tomate"
+    vegeta = ["Pimineto", "Tofu"]
+    carni = ["Peperoni", "Jamon", "Salmon"]
 
     # Preguntar si quiere pizza vegetariana
     $tipopizza = Read-Host "¿Deseas una pizza vegetariana? (S/N)"
 
     if ($tipopizza -eq "S") {
-        $vegetariana = $true
-        Write-Host "Ingredientes disponibles para pizza vegetariana:"
-        Write-Host "1. Pimiento"
-        Write-Host "2. Tofu"
-        $opcion = Read-Host "Elige un ingrediente (1 o 2)"
-        
-        switch ($opcion) {
-            "1" { $ingrediente = "Pimiento" }
-            "2" { $ingrediente = "Tofu" }
-        }
+        $opcion = Read-Host "Elige un ingrediente (Pimiento o Tofu)"
 
+        if ($opcion in vegeta) {
+        Write-Host "Pizza vegetariana con $opcion, $ingbase."
+       
+        } else {
+        Write-Host "Ingrediente no valido."
+    
     } else {
-        $vegetariana = $false
-        Write-Host "Ingredientes disponibles para pizza no vegetariana:"
-        Write-Host "1. Peperoni"
-        Write-Host "2. Jamón"
-        Write-Host "3. Salmón"
-        $opcion = Read-Host "Elige un ingrediente (1, 2 o 3)"
-        
-        switch ($opcion) {
-            "1" { $ingrediente = "Peperoni" }
-            "2" { $ingrediente = "Jamón" }
-            "3" { $ingrediente = "Salmón" }
-        }
-    }
-
-    # Mostrar resumen del pedido
-    Write-Host "`nTu pizza es:" -ForegroundColor Green
-    if ($vegetariana) {
-        Write-Host "Pizza vegetariana con $ingrediente, $base."
+    
+    $opcion = Read-Host "Elige un ingrediente (Peperoni, Jamon o Salmon)"
+    if ($opcion in carni) {
+        Write-Host "Pizza no vegetariana con $opcion, $ingbase."
+    
     } else {
-        Write-Host "Pizza no vegetariana con $ingrediente, $base."
+        Write-Host "Ingrediente no valido."}
     }
 }
 
@@ -49,8 +35,9 @@ function pizza {
 function dias {
     $diasPares = 0
     $diasImpares = 0
+    anobi = [31,29,31,30,31,30,31,31,30,31,30,31]
 
-    for ($i = 1; $i -le 366; $i++) {
+    for ($i = 1; $i -le anobi[*]; $i++) {
         if ($i % 2 -eq 0) {
             $diasPares++
         } else {
