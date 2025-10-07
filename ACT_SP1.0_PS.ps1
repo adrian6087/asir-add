@@ -295,9 +295,9 @@ function automatizarps {
 
 
 
-# MENU
+# === Menú principal ===
 $opcion = 1
-while ($opcion -ne '0') do {
+while ($opcion -ne '0') {
     Clear-Host
     Write-Host "==============================" -ForegroundColor Cyan
     Write-Host "     MENÚ DE EJERCICIOS" -ForegroundColor Cyan
@@ -305,39 +305,39 @@ while ($opcion -ne '0') do {
     Write-Host "1) Pedir pizza"
     Write-Host "2) Contar dias par y impar (bisiesto)"
     Write-Host "3) Menu acciones con usuarios"
-    Write-Host "4) "
-    Write-Host "5) "
-    Write-Host "6) "
-    Write-Host "7) "
-    Write-Host "8) "
-    Write-Host "9) "
-    Write-Host "10) "
-    Write-Host "11) "
-    Write-Host "12) "
-    Write-Host "13) "
-    Write-Host "14) "
-    Write-Host "15) "
+    Write-Host "4) Limpieza"
+    Write-Host "5) Verificar espacio en disco"
+    Write-Host "6) Generar contraseña"
+    Write-Host "7) Fibonacci"
+    Write-Host "8) Fibonacci Recursivo"
+    Write-Host "9) Monitoreo"
+    Write-Host "10) Alerta por espacio"
+    Write-Host "11) Copias masivas"
+    Write-Host "12) Automatizar PowerShell"
+    Write-Host "13) Barrido de red"
+    Write-Host "14) Crear evento"
+    Write-Host "15) Limpieza (repetida)"
     Write-Host "0) Salir"
     Write-Host "==============================" -ForegroundColor Cyan
 
-    $opcion = Read-Host "Elige una opción (0-115)"
+    $opcion = Read-Host "Elige una opción (0-15)"
 
     switch ($opcion) {
-        '1'  pizza
-        '2'  dias
-        '3'  menu_usuarios
-        '4'  limpieza
-        '5'  diskp
-        '6'  contraseña
-        '7'  Fibonacci
-        '8'  FibonacciRecu
-        '9'  monitoreo
-        '10'  alertaEspacio
-        '11'  copiasMasivas
-        '12'  automatizarps
-        '13'  barrido
-        '14'  evento
-        '15'  limpieza
+        '1'  { pizza }
+        '2'  { dias }
+        '3'  { menu_usuarios }
+        '4'  { limpieza }
+        '5'  { diskp }
+        '6'  { contraseña }
+        '7'  { Fibonacci }
+        '8'  { FibonacciRecu }
+        '9'  { monitoreo }
+        '10' { alertaEspacio }
+        '11' { copiasMasivas }
+        '12' { automatizarps }
+        '13' { barrido }
+        '14' { evento }
+        '15' { limpieza }
         '0'  {
             Write-Host "Saliendo..." -ForegroundColor Yellow
             break
@@ -351,4 +351,4 @@ while ($opcion -ne '0') do {
         Write-Host ""
         Read-Host "Presiona Enter para continuar..."
     }
-} 
+}
