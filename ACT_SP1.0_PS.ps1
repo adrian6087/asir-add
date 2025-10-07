@@ -38,15 +38,25 @@ function pizza {
 function dias {
     $diasPares = 0
     $diasImpares = 0
-    anobi = [31,29,31,30,31,30,31,31,30,31,30,31]
 
-    for ($i = 1; $i -le anobi[*]; $i++) {
+    # Array con la cantidad de días de cada mes en un año bisiesto
+    $anobi = @(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+
+    # Sumar todos los días del año bisiesto
+    $totalDias = 0
+    foreach ($mes in $anobi) {
+        $totalDias += $mes
+    }
+
+    # Contar días pares e impares
+    for ($i = 1; $i -le $totalDias; $i++) {
         if ($i % 2 -eq 0) {
             $diasPares++
         } else {
             $diasImpares++
         }
     }
+
     Write-Host "En un año bisiesto hay:"
     Write-Host "$diasPares días pares"
     Write-Host "$diasImpares días impares"
