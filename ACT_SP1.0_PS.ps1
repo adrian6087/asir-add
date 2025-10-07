@@ -67,14 +67,14 @@ function dias {
 
 function menu_usuarios {
     $opcion = ""
-    while ($opcion -ne "5") {
+    while ($opcion -ne "0") {
         Write-Host "`n=== MENÚ DE USUARIOS ==="
         Write-Host "1. Listar usuarios"
         Write-Host "2. Crear usuario"
         Write-Host "3. Eliminar usuario"
         Write-Host "4. Modificar nombre de usuario"
         Write-Host "0. Salir"
-        $opcion = Read-Host "Elija una opción (1-5)"
+        $opcion = Read-Host "Elija una opción (1-4)"
 
         if ($opcion -eq "1") {
             Get-LocalUser | Select Name
