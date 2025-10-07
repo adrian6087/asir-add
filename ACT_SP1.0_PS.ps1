@@ -3,8 +3,8 @@
 function pizza {
     # Variables de ingredientes
     $ingbase = "mozzarella y tomate"
-    vegeta = ["Pimineto", "Tofu"]
-    carni = ["Peperoni", "Jamon", "Salmon"]
+    $vegeta = @("Pimineto", "Tofu")
+    $carni = @("Peperoni", "Jamon", "Salmon")
 
     # Preguntar si quiere pizza vegetariana
     $tipopizza = Read-Host "¿Deseas una pizza vegetariana? (S/N)"
@@ -12,22 +12,24 @@ function pizza {
     if ($tipopizza -eq "S") {
         $opcion = Read-Host "Elige un ingrediente (Pimiento o Tofu)"
 
-        if ($opcion in vegeta) {
+        if ($opcion -contains $vegeta) {
         Write-Host "Pizza vegetariana con $opcion, $ingbase."
-       
         } else {
         Write-Host "Ingrediente no valido."
     
-    } else {
-    
-        $opcion = Read-Host "Elige un ingrediente (Peperoni, Jamon o Salmon)"
-        if ($opcion in carni) {
-            Write-Host "Pizza no vegetariana con $opcion, $ingbase."
-    
+        } elseif ($tipopizza -eq "N") {
+            $opcion = Read-Host "Elige un ingrediente (Peperoni, Jamon o Salmon)"
+
+            if ($carni -contains $opcion) {
+                Write-Host "Pizza no vegetariana con $opcion, $ingbase."
+            } else {
+                Write-Host "Ingrediente no válido."
+            }
+
         } else {
-            Write-Host "Ingrediente no valido."}
+            Write-Host "Opción inválida. Por favor escribe S o N."
         }
-    }
+     }
 }
 
 # 2. Calcular el número de días pares e impares que hay en un año bisiesto
