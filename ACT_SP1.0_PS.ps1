@@ -20,15 +20,15 @@ function pizza {
     
     } else {
     
-    $opcion = Read-Host "Elige un ingrediente (Peperoni, Jamon o Salmon)"
-    if ($opcion in carni) {
-        Write-Host "Pizza no vegetariana con $opcion, $ingbase."
+        $opcion = Read-Host "Elige un ingrediente (Peperoni, Jamon o Salmon)"
+        if ($opcion in carni) {
+            Write-Host "Pizza no vegetariana con $opcion, $ingbase."
     
-    } else {
-        Write-Host "Ingrediente no valido."}
+        } else {
+            Write-Host "Ingrediente no valido."}
+        }
     }
 }
-
 
 # 2. Calcular el número de días pares e impares que hay en un año bisiesto
 
