@@ -226,36 +226,26 @@ function contraseña {
 
 # 7. Fibonnaci simple
 
-$n = [int](Read-Host "¿Cuántos números de Fibonacci quieres? ")
+function Fibonacci {
+    $n = [int](Read-Host "¿Cuántos números de Fibonacci quieres? ")
 
-$a = 0
-$b = 1
+    $a = 0
+    $b = 1
 
-Write-Host "Los primeros $n números de Fibonacci son:"
+    Write-Host "Los primeros $n números de Fibonacci son:"
 
-for ($i = 0; $i -lt $n; $i++) {
-    Write-Host $a
-    $temp = $a + $b
-    $a = $b
-    $b = $temp
+    for ($i = 0; $i -lt $n; $i++) {
+        Write-Host $a
+        $temp = $a + $b
+        $a = $b
+        $b = $temp
+    }
 }
 
 
 # 8. Fibonacci recursivo
 
-function FibonacciRecu($n) {
-    if ($n -le 1) {
-        return $n
-    } else {
-        return (Fibonacci($n - 1) + Fibonacci($n - 2))
-    }
-}
 
-$n = [int](Read-Host "¿Cuántos números de Fibonacci quieres? ")
-
-for ($i = 0; $i -lt $n; $i++) {
-    Write-Output (Fibonacci $i)
-}
 
 
 # 9. Monitorear el uso de la CPU
