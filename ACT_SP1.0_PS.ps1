@@ -155,17 +155,72 @@ function menu_grupos {
 
 
 # 5. DISCOS
+function diskp {
+    # Solicitar número de disco
+    $diskNumber = Read-Host "Introduce el número del disco a utilizar"
 
+    # Verificar que sea un número
+    if (-not ($diskNumber -match '^\d+$')) {
+        Write-Host "Error: Debes introducir un número válido." -ForegroundColor Red
+        return
+    }
+
+    # Obtener información del disco
+    $disk = Get-Disk -Number $diskNumber -ErrorAction SilentlyContinue
+    if (-not $disk) {
+        Write-Host "Error: No se encontró el disco número $diskNumber." -ForegroundColor Red
+        return
+    }
+
+    # Mostrar tamaño en GB (redondeado)
+    $sizeGB = [Math]::Round($disk.Size / 1GB, 2)
+    Write-Host "Tamaño del disco $diskNumber: $sizeGB GB"
+
+    # Confirmación de seguridad
+    $confirm = Read-Host "¿Estás seguro de que quieres limpiar y particionar este disco? (escribe 'SI' para continuar)"
+    if ($confirm -ne 'SI') {
+        Write-Host "Operación cancelada." -ForegroundColor Yellow
+        return
+    }
+
+    # Limpiar el disco con DiskPart
+    $diskpartScript = @"
+select disk $diskNumber
+clean
+"@
+    $diskpartScript | diskpart
+
+    # Crear particiones de 1 GB hasta que no quede espacio
+    $remaining = $disk.Size
+    $partitionSizeBytes = 1GB
+    $i = 1
+
+    while ($remaining -ge $partitionSizeBytes) {
+        $diskpartScript = @"
+select disk $diskNumber
+create partition primary size=1024
+"@
+        $diskpartScript | diskpart
+        Write-Host "Creada partición $i de 1 GB"
+        $remaining -= $partitionSizeBytes
+        $i++
+    }
+
+    Write-Host "Proceso completado. Se crearon $($i - 1) particiones de 1 GB."
+}
 
 
 # 6. Contraseña valida
 
-$contra = Read-Host "Introduce una contraseña"
+function contraseña {
+    
+    [string]$contra = (Read-Host "Introduce una contraseña")
 
-if ($contra.Length -ge 8 && $contra -match '[a-z]' && $contra -match '[A-Z]' && $contra -match '\d' && $contra -match '[^\w\s]') {
-    Write-Host "Contraseña válida."
-} else {
-    Write-Host "Contraseña no válida."
+    if ($contra.Length -ge 8 -and $contra -match '[a-z]' -and $contra -match '[A-Z]' -and $contra -match '\d' -and $contra -match '[^\w\s]') {
+        Write-Host "Contraseña válida." -ForegroundColor Green
+    } else {
+        Write-Host "Contraseña no válida." -ForegroundColor Red
+    }
 }
 
 
