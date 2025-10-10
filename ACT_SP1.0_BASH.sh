@@ -90,7 +90,7 @@ adivina(){
 
 # 4. Buscar fichero y devolver el numero de vocales dentro.
 
-buscar {
+buscar() {
 
     # Pedir al usuario el nombre del archivo
     read -p "Introduce el nombre del archivo: " nom
@@ -121,7 +121,7 @@ buscar {
 
 # 5. Contar ficheros en un directorio.
 
-contar{
+contar() {
 
     # Pedir al usuario que introduzca un directorio
     read -p "Introduce el nombre del directorio: " dir
@@ -141,7 +141,7 @@ contar{
 
 # 6. Segun nombre del objeto perdir permisos en octal incluyendo los especiales.
 
-permisosoctal {
+permisosoctal() {
 
     reap -p "Introduce la ruta absoluta del objeto: " obj
 
@@ -162,7 +162,7 @@ permisosoctal {
 
 # 7. Solicitar al usuario un número de 1 al 200 y mostrar su representación en romano.
 
-romano {
+romano() {
 
     # Pedir al usuario un número entre 1 y 200
     read -p "Introduce un número entre 1 y 200: " num
