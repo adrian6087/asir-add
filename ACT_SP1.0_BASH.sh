@@ -174,7 +174,7 @@ romano() {
     fi
 
     # Función para convertir número a romano
-    convertir_a_romano() {
+    convrom($num) {
         numval=$1
         numrom=""
 
@@ -215,9 +215,83 @@ romano() {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 8.
+# 8. Crear usuarios y carpetas personales según los archivos en /mnt/usuarios y eliminar cada archivo tras procesarlo; si no hay archivos, mostrar "listado vacío".
 
-automatizar {
+automatizar() {
+
+    # Comprobar si el directorio /mnt/usuarios está vacío
+    if [ -z "$(ls -A /mnt/usuarios 2>/dev/null)" ]; then
+        echo "Listado vacío"
+        exit 0
+    fi
+
+    # Recorrer cada archivo en /mnt/usuarios
+    for archivo in /mnt/usuarios/*; do
+        if [ -f "$archivo" ]; then
+            # Obtener el nombre del archivo (sin ruta)
+            nombre_usuario=$(basename "$archivo")
+
+            # Crear el usuario con home
+            echo "Creando usuario: $nombre_usuario"
+            useradd -m "$nombre_usuario" 2>/dev/null
+
+            # Comprobar si el usuario se creó correctamente
+            if id "$nombre_usuario" &>/dev/null; then
+                # Leer cada línea del archivo y crear carpetas en su directorio personal
+                while IFS= read -r linea; do
+                    # Comprobar que la línea no esté vacía
+                    if [ -n "$linea" ]; then
+                        mkdir -p "/home/$nombre_usuario/$linea"
+                        echo "Carpeta creada: /home/$nombre_usuario/$linea"
+                    fi
+                done < "$archivo"
+
+                # Eliminar el archivo después de procesarlo
+                rm "$archivo"
+                echo "Archivo eliminado: $archivo"
+            else
+                echo "Error: No se pudo crear el usuario $nombre_usuario"
+            fi
+        fi
+    done
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 9. Crear un fichero en el directorio actual con nombre y tamaño dados (parametros), si faltan, usar por defecto "fichero_vacio" y 1.024KB.
+
+crear() {
+
+    # Si no se pasan parámetros
+    if [ $# -eq 0 ]; then
+        nom="fichero_vacio"
+        tam=1024
+    # Si se pasa un parámetro
+    elif [ $# -eq 1 ]; then
+        nom="$1"
+        tam=1024
+    # Si se pasan dos parámetros
+    elif [ $# -eq 2 ]; then
+        nom="$1"
+        tam="$2"
+    else
+        echo "Uso: $0 [nombre_fichero] [tamaño_en_KB]"
+        exit 1
+    fi
+
+    # Crear el archivo con el tamaño indicado en KB
+    dd if=/dev/zero of="$nom" bs=1K count="$tam" 2>/dev/null
+
+    echo "Fichero '$nom' creado con $tam KB."
+
+}
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 10.Crear un fichero con nombre y tamaño dados (parametros); si el nombre ya existe, añadir un número del 1-9 al final; si todos existen, mostrar un aviso y no crear nada.
+
+crear_2() {
 
 
 
@@ -225,19 +299,9 @@ automatizar {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 9.
+# 11. Dar una palabra como parámetro y mostrarla por pantalla reemplazando vocales: a→1, e→2, i→3, o→4, u→5.
 
-crear {
-
-
-
-}
-
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# 10.
-
-crear_2 {
+reescribir() {
 
 
 
@@ -245,19 +309,9 @@ crear_2 {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 11.
+# 12. 
 
-reescribir {
-
-
-
-}
-
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-# 12.
-
-contusu {
+contusu() {
 
 
 
@@ -267,7 +321,7 @@ contusu {
 
 # 13.
 
-quita_blancos {
+quita_blancos() {
 
 
 
@@ -277,7 +331,7 @@ quita_blancos {
 
 # 14.
 
-lineas {
+lineas() {
 
 
 
@@ -287,7 +341,7 @@ lineas {
 
 # 15.
 
-analizar {
+analizar() {
 
 
 
