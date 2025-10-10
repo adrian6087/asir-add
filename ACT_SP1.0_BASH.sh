@@ -309,7 +309,7 @@ reescribir() {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 12. 
+# 12. Contar cuántos usuarios reales tiene la carpeta /home, permitir elegir uno y realiza una copia de su directorio en /home/copiaseguridad/nombreusuario_fecha.
 
 contusu() {
 
@@ -319,7 +319,7 @@ contusu() {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 13.
+# 13. Renombrar automáticamente todos los ficheros del directorio actual, reemplazando los espacios en blanco en sus nombres por guiones bajos (_).
 
 quita_blancos() {
 
@@ -329,7 +329,7 @@ quita_blancos() {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 14.
+# 14. Validar tres parámetros (carácter, número 1–60, número 1–10) y dibujar en pantalla el número de líneas indicado, cada una con el carácter dado repetido según la longitud especificada.
 
 lineas() {
 
@@ -339,7 +339,7 @@ lineas() {
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 15.
+# 15. Analizar un directorio (incluyendo subdirectorios) indicado como parámetro, contando cuántos archivos hay de cada una de las extensiones especificadas en los argumentos.
 
 analizar() {
 
