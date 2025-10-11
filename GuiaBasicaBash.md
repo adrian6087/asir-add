@@ -1,10 +1,5 @@
 # Guía Básica de Bash
 
-## Introducción
-
-Bash (Bourne Again SHell) es un intérprete de comandos y lenguaje de scripting muy usado en sistemas Unix / Linux.  
-Con Bash puedes automatizar tareas del sistema, manipular archivos, ejecutar programas, procesar texto, etc.
-
 ## Estructura de un script Bash
 
 ```bash
