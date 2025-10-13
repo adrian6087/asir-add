@@ -312,4 +312,4 @@ while IFS= read -r line; do
 done < "$file"  # Redirige la entrada del bucle al archivo especificado
 ```
 
-![Deus me livre](https://www.google.com/imgres?q=dios&imgurl=https%3A%2F%2Fi0.wp.com%2Flanoticia.com%2Fwp-content%2Fuploads%2F2023%2F06%2Fdios-jesus-o-jesucristo-cual-es-la-diferencia-scaled-e1687450325994.jpg%3Fresize%3D150%252C150%26ssl%3D1&imgrefurl=https%3A%2F%2Flanoticia.com%2Fespiritualidad%2Fdios-jesus-o-jesucristo-quien-es-quien-cual-es-la-diferencia%2F&docid=me02c5-fiCi5KM&tbnid=1RImhdi2MFUadM&vet=12ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBkQAA..i&w=150&h=150&hcb=2&ved=2ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBkQAA)
+![Deus me livre](https://www.google.com/imgres?q=dios&imgurl=https%3A%2F%2Fperucatolico.com%2Fwp-content%2Fuploads%2Fjesus-es-dios.jpeg&imgrefurl=https%3A%2F%2Fperucatolico.com%2Festas-son-las-10-maneras-en-las-que-jesucristo-nos-revela-la-identidad-de-dios%2F&docid=FAu151Ujs_1GMM&tbnid=Fqt_s-GKVcHcUM&vet=12ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBwQAA..i&w=948&h=542&hcb=2&ved=2ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBwQAA)
