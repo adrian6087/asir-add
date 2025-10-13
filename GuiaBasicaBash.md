@@ -312,4 +312,4 @@ while IFS= read -r line; do
 done < "$file"  # Redirige la entrada del bucle al archivo especificado
 ```
 
-![Deus me livre]([https://www.google.com/imgres?q=dios&imgurl=https%3A%2F%2Fperucatolico.com%2Fwp-content%2Fuploads%2Fjesus-es-dios.jpeg&imgrefurl=https%3A%2F%2Fperucatolico.com%2Festas-son-las-10-maneras-en-las-que-jesucristo-nos-revela-la-identidad-de-dios%2F&docid=FAu151Ujs_1GMM&tbnid=Fqt_s-GKVcHcUM&vet=12ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBwQAA..i&w=948&h=542&hcb=2&ved=2ahUKEwiQ5o-Fl6KQAxWaUaQEHfAEJdYQM3oECBwQAA](https://cdn.pixabay.com/photo/2017/02/19/20/06/prayer-2080843_960_720.jpg))
+![Deus me livre](https://cdn.pixabay.com/photo/2017/02/19/20/06/prayer-2080843_960_720.jpg)
