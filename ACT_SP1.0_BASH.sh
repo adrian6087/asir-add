@@ -293,7 +293,45 @@ crear() {
 
 crear_2() {
 
+    # Si no se pasan parámetros
+    if [ $# -eq 0 ]; then
+        nom="fichero_vacio"
+        tam=1024
+    # Si se pasa un parámetro
+    elif [ $# -eq 1 ]; then
+        nom="$1"
+        tam=1024
+    # Si se pasan dos parámetros
+    elif [ $# -eq 2 ]; then
+        nom="$1"
+        tam="$2"
+    else
+        echo "Uso: $0 [nombre_fichero] [tamaño_en_KB]"
+        exit 1
+    fi
 
+    # Comprobar si el archivo ya existe
+    if [ -e "$nom" ]; then
+        encontrado=0
+        for i in {1..9}; do
+            nuevo_nombre="${nom}${i}"
+            if [ ! -e "$nuevo_nombre" ]; then
+                nom="$nuevo_nombre"
+                encontrado=1
+                break
+            fi
+        done
+
+        if [ $encontrado -eq 0 ]; then
+            echo "Ya existen archivos desde $nom1 hasta $nom9. No se creará ningún archivo."
+            return 1
+        fi
+    fi
+
+    # Crear el archivo con el tamaño indicado en KB
+    dd if=/dev/zero of="$nom" bs=1K count="$tam" 2>/dev/null
+
+    echo "Fichero '$nom' creado con $tam KB."
 
 }
 
@@ -303,7 +341,23 @@ crear_2() {
 
 reescribir() {
 
+    # Verificar que se haya pasado un parámetro
+    if [ -z "$1" ]; then
+        echo "Uso: $0 <palabra>"
+        exit 1
+    fi
 
+    palabra="$1"
+
+    # Sustituir las vocales por números
+    palabra=$(echo "$palabra" | tr 'a' '1')
+    palabra=$(echo "$palabra" | tr 'e' '2')
+    palabra=$(echo "$palabra" | tr 'i' '3')
+    palabra=$(echo "$palabra" | tr 'o' '4')
+    palabra=$(echo "$palabra" | tr 'u' '5')
+
+    # Mostrar la palabra modificada
+    echo "$palabra"
 
 }
 
@@ -313,7 +367,46 @@ reescribir() {
 
 contusu() {
 
+    # Directorio donde se guardarán las copias
+    backup_dir="/home/copiaseguridad"
 
+    # Crear directorio de copias si no existe
+    mkdir -p "$backup_dir"
+
+    # Obtener usuarios con directorio en /home
+    usuarios=($(ls /home | grep -v "lost+found"))
+
+    # Mostrar número de usuarios
+    echo "Número de usuarios con directorio en /home: ${#usuarios[@]}"
+
+    # Mostrar lista de usuarios
+    echo "Usuarios disponibles:"
+    for i in "${!usuarios[@]}"; do
+        echo "$((i+1)). ${usuarios[i]}"
+    done
+
+    # Pedir al usuario que elija uno
+    read -p "Selecciona un usuario por número: " num
+
+    # Verificar que la selección sea válida
+    if [[ $num -ge 1 && $num -le ${#usuarios[@]} ]]; then
+        usuario="${usuarios[$((num-1))]}"
+    else
+        echo "Selección inválida."
+        exit 1
+    fi
+
+    # Fecha actual
+    fecha=$(date +%Y%m%d_%H%M%S)
+
+    # Ruta de la copia de seguridad
+    destino="$backup_dir/${usuario}_$fecha"
+
+    # Realizar la copia de seguridad
+    tar -czf "$destino.tar.gz" -C /home "$usuario"
+
+    # Confirmar
+    echo "Copia de seguridad creada en: $destino.tar.gz"
 
 }
 
