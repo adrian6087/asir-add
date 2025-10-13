@@ -312,4 +312,4 @@ while IFS= read -r line; do
 done < "$file"  # Redirige la entrada del bucle al archivo especificado
 ```
 
-![Deus me livre](https://cdn.pixabay.com/photo/2017/02/19/20/06/prayer-2080843_960_720.jpg)
+![Deus me livre]([https://cdn.pixabay.com/photo/2017/02/19/20/06/prayer-2080843_960_720.jpg](https://thebiblechat.com/_next/image/?url=https%3A%2F%2Fgkoaaegmzwoauvmucinx.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fposts%2FEG3wBLCRNgwzAxJtlKq.png&w=640&q=75))
