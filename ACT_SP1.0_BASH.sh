@@ -5,6 +5,7 @@
 # 1. Calcuar si el año es bisiesto.
 
 bisiesto() {
+   
     # Pedimos al usuario que introduzca un año
     read -p "Introduce un año: " ano
 
@@ -21,6 +22,7 @@ bisiesto() {
 # 2. Configurar la red en base a lo que introduzca el usuario.
 
 configurarred(){
+
     #Recogida de los parametros
     read -p "Introduce una ip: " IP
     read -p "Introduce una mascara: " MASCARA
