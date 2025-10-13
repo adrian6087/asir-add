@@ -110,8 +110,8 @@ esac
 
 ## Funciones
 
-Usar local para variables locales dentro de funciones (evita colisiones).
-El valor de retorno se indica con return (0–255) o usando echo/stdout para resultados.
+- Usar local para variables locales dentro de funciones (evita colisiones).
+- El valor de retorno se indica con return (0–255) o usando echo/stdout para resultados.
 
 ```bash
 mi_funcion() {
@@ -123,5 +123,163 @@ mi_funcion() {
 mi_funcion "Alice"
 ```
 
+### Manejo de errores y control de salida
 
-Manejo de errores y control de salida Un comando exitoso devuelve 0; un error devuelve > 0. Puedes verificarlo así: comando && echo "Éxito" || echo "Fallo" O con if: if comando; then echo "OK" else echo "Algo salió mal" fi Usa trap para capturar señales y limpiar: trap 'echo "Saliendo..."; exit' SIGINT SIGTERM Redirecciones y pipes Salida estándar (stdout): > archivo (sobrescribe), >> archivo (añade) Error estándar (stderr): 2> archivo, 2>> archivo Combinar ambos: &> archivo Tubos (pipes): comando1 | comando2 Lectura de comandos: var=$(comando) o var=comando (la primera forma es más moderna) Lectura de entrada, argumentos read -r linea read -rp "Ingresa nombre: " nombre # Usar getopts para opciones con banderas: while getopts ":a:b:h" opt; do case $opt in a) valor_a=$OPTARG ;; b) valor_b=$OPTARG ;; h) echo "Uso: $0 [-a valor] [-b valor]" ;; *) echo "Opción inválida"; exit 1 ;; esac done Procesamiento de cadenas y sustituciones # Longitud de cadena: ${#var} # Subcadena: ${var:inicio:longitud} # Reemplazo: ${var/patron/reemplazo} # solo primera aparición ${var//patron/reemplazo} # todas las apariciones # Eliminación de prefijo/sufijo: ${var#prefijo} # elimina el menor prefijo coincidente ${var##prefijo} # el mayor prefijo coincidente ${var%sufijo} # elimina el menor sufijo coincidente ${var%%sufijo} # el mayor sufijo coincidente Arrays # Declaración declare -a arr=("uno" "dos" "tres") # Acceso echo "${arr[0]}" # elemento 0 echo "${arr[@]}" # todos los elementos # Recorrer for e in "${arr[@]}"; do echo "$e" done # Longitud echo "${#arr[@]}" Operaciones aritméticas # Uso de double parentheses: a=5 b=3 (( c = a + b )) echo "$c" # Otra forma: “expr” o “bc” (menos usada) Leer y escribir archivos línea por línea while IFS= read -r linea; do echo "Procesé: $linea" done < archivo.txt Ejemplo completo pequeño #!/usr/bin/env bash set -euo pipefail function uso() { echo "Uso: $0 -f <archivo>" exit 1 } file="" while getopts ":f:h" opt; do case $opt in f) file=$OPTARG ;; h) uso ;; *) uso ;; esac done if [[ -z "$file" ]]; then uso fi if [[ ! -f "$file" ]]; then echo "El archivo $file no existe" exit 1 fi while IFS= read -r line; do echo ">> $line" done < "$file"
+- Un comando exitoso devuelve `0`; un error devuelve `> 0`.
+- Puedes verificarlo así:
+
+```bash
+comando && echo "Éxito" || echo "Fallo"
+```
+
+- Con if:
+
+```bash
+if comando; then
+  echo "OK"
+else
+  echo "Algo salió mal"
+fi
+```
+
+- Usa trap para capturar señales y limpiar:
+
+```bash
+trap 'echo "Saliendo..."; exit' SIGINT SIGTERM
+```
+
+## Redirecciones y pipes
+
+- Salida estándar (stdout):
+-- > archivo (sobrescribe)
+-- >> archivo (añade)
+
+- Error estándar (stderr):
+-- 2> archivo
+-- 2>> archivo
+
+- Combinar ambos:
+-- &> archivo
+
+- Pipes:
+-- comando1 | comando2
+
+## Lectura de comandos
+
+```bash
+var=$(comando)  # Forma moderna
+var=`comando`   # Forma antigua (no recomendada)
+```
+
+## Lectura de entrada, argumentos
+
+```bash
+read -r linea
+read -rp "Ingresa nombre: " nombre
+```
+
+## Uso de getopts para opciones con banderas:
+
+```bash
+while getopts ":a:b:h" opt; do
+  case $opt in
+    a) valor_a=$OPTARG ;;
+    b) valor_b=$OPTARG ;;
+    h) echo "Uso: $0 [-a valor] [-b valor]" ;;
+    *) echo "Opción inválida"; exit 1 ;;
+  esac
+done
+```
+
+## Procesamiento de cadenas y sustituciones
+
+```bash
+${#var}                     # Longitud de cadena
+${var:inicio:longitud}      # Subcadena
+${var/patron/reemplazo}     # Reemplazo (solo primera aparición)
+${var//patron/reemplazo}    # Reemplazo (todas las apariciones)
+
+${var#prefijo}              # Elimina menor prefijo coincidente
+${var##prefijo}             # Elimina mayor prefijo coincidente
+${var%sufijo}               # Elimina menor sufijo coincidente
+${var%%sufijo}              # Elimina mayor sufijo coincidente
+```
+
+## Arrays
+
+```bash
+declare -a arr=("uno" "dos" "tres")
+
+echo "${arr[0]}"    # elemento 0
+echo "${arr[@]}"    # todos los elementos
+
+# Recorrer
+for e in "${arr[@]}"; do
+  echo "$e"
+done
+
+# Longitud
+echo "${#arr[@]}"
+```
+
+## Operaciones aritméticas
+
+```bash
+a=5
+b=3
+(( c = a + b ))
+echo "$c"
+```
+
+## Leer y escribir archivos línea por línea
+
+```bash
+while IFS= read -r linea; do
+  echo "Procesé: $linea"
+done < archivo.txt
+```
+
+## Ejemplo completo pequeño
+
+```bash
+#!/bin/bash
+# Usa el intérprete bash desde la ruta del entorno
+
+set -euo pipefail
+# -e: salir si algún comando falla
+# -u: salir si se usa una variable no definida
+# -o pipefail: fallar si cualquier parte de un pipeline falla
+
+# Función que muestra cómo usar el script
+function uso() {
+  echo "Uso: $0 -f <archivo>"  # $0 es el nombre del script
+  exit 1  # Salida con error
+}
+
+file=""  # Inicializa la variable 'file' vacía
+
+# Procesamiento de opciones con getopts
+while getopts ":f:h" opt; do
+  case $opt in
+    f) file=$OPTARG ;;  # Guarda el argumento de -f en la variable 'file'
+    h) uso ;;           # Si se pasa -h, muestra ayuda
+    *) uso ;;           # Cualquier otra opción inválida, también muestra ayuda
+  esac
+done
+
+# Verifica si no se proporcionó un archivo
+if [[ -z "$file" ]]; then
+  uso  # Muestra ayuda y termina
+fi
+
+# Verifica si el archivo especificado no existe
+if [[ ! -f "$file" ]]; then
+  echo "El archivo $file no existe"
+  exit 1  # Termina con error
+fi
+
+# Lee el archivo línea por línea
+while IFS= read -r line; do
+  echo ">> $line"  # Imprime cada línea con prefijo ">>"
+done < "$file"  # Redirige la entrada del bucle al archivo especificado
+```
