@@ -150,19 +150,13 @@ trap 'echo "Saliendo..."; exit' SIGINT SIGTERM
 
 ## Redirecciones y pipes
 
-- Salida estándar (stdout):
--- > archivo (sobrescribe)
--- >> archivo (añade)
+- Salida estándar (stdout): \n - > archivo (sobrescribe) \n - >> archivo (añade)
 
-- Error estándar (stderr):
--- 2> archivo
--- 2>> archivo
+- Error estándar (stderr): \n - 2> archivo \n - 2>> archivo
 
-- Combinar ambos:
--- &> archivo
+- Combinar ambos: \n - &> archivo
 
-- Pipes:
--- comando1 | comando2
+- Pipes: \n - comando1 | comando2
 
 ## Lectura de comandos
 
