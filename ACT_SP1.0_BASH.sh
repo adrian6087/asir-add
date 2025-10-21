@@ -476,20 +476,7 @@ done
 
 analizar() {
 
-# Verificar que se pasen al menos 2 parámetros
-if [ $# -lt 2 ]; then
-    echo "Uso: $0 <directorio> <ext1> [ext2] ..."
-    exit 1
-fi
 
-DIR="$1"
-shift
-
-# Recorrer cada extensión y contar archivos
-for ext in "$@"; do
-    num=$(find "$DIR" -type f -name "*.$ext" | wc -l)
-    echo "$ext: $num archivos"
-done
 
 }
 
