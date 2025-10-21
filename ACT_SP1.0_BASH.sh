@@ -418,7 +418,20 @@ contusu() {
 
 quita_blancos() {
 
+# Bucle que recorre todos los archivos del directorio actual
+for archivo in *; do
+    # Verificamos que sea un archivo (no directorio)
+    if [ -f "$archivo" ]; then
+        # Creamos el nuevo nombre reemplazando los espacios por guiones bajos
+        nuevo_nombre="${archivo// /_}"
 
+        # Si el nombre cambia (es decir, había espacios), renombramos
+        if [ "$archivo" != "$nuevo_nombre" ]; then
+            mv "$archivo" "$nuevo_nombre"
+            echo "Renombrado: '$archivo' -> '$nuevo_nombre'"
+        fi
+    fi
+done
 
 }
 
@@ -428,7 +441,32 @@ quita_blancos() {
 
 lineas() {
 
+# Verificar número de parámetros
+if [ $# -ne 3 ]; then
+    echo "Uso: $0 <carácter> <número_caracteres> <número_líneas>"
+    exit 1
+fi
 
+# Asignar parámetros
+char="$1"
+num_chars="$2"
+num_lines="$3"
+
+# Comprobar rangos
+if [ "$num_chars" -lt 1 ] || [ "$num_chars" -gt 60 ]; then
+    echo "Error: número de caracteres debe estar entre 1 y 60"
+    exit 1
+fi
+
+if [ "$num_lines" -lt 1 ] || [ "$num_lines" -gt 10 ]; then
+    echo "Error: número de líneas debe estar entre 1 y 10"
+    exit 1
+fi
+
+# Dibujar las líneas
+for (( i=1; i<=num_lines; i++ )); do
+    printf '%*s\n' "$num_chars" | tr ' ' "$char"
+done
 
 }
 
@@ -438,7 +476,20 @@ lineas() {
 
 analizar() {
 
+# Verificar que se pasen al menos 2 parámetros
+if [ $# -lt 2 ]; then
+    echo "Uso: $0 <directorio> <ext1> [ext2] ..."
+    exit 1
+fi
 
+DIR="$1"
+shift
+
+# Recorrer cada extensión y contar archivos
+for ext in "$@"; do
+    num=$(find "$DIR" -type f -name "*.$ext" | wc -l)
+    echo "$ext: $num archivos"
+done
 
 }
 
