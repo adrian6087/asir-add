@@ -39,10 +39,20 @@ do {
         
         # Muestra un título con lo que va a hacer.
         Write-Host ""
-        Write-Host "--- Mostrando los 12 eventos más recientes de '$logSeleccionado' ---"
+        Write-Host "--- Buscando en '$logSeleccionado' ---"
 
-        # Busca los 12 eventos más nuevos de ese registro y los muestra como tabla.
-        Get-WinEvent -LogName $logSeleccionado -MaxEvents 12 | Format-Table TimeCreated, ProviderName, Message -AutoSize -Wrap
+        # Buscamos los eventos y los guardamos en una variable ocultando el error si no hay nada.
+        $eventos = Get-WinEvent -LogName $logSeleccionado -MaxEvents 12 -ErrorAction SilentlyContinue
+
+        if ($eventos) {
+            # Si hay eventos, los mostramos.
+            Write-Host "Mostrando los 12 eventos más recientes:"
+            $eventos | Format-Table TimeCreated, ProviderName, Message -AutoSize -Wrap
+        } else {
+            # Si está vacía, mostramos que no hay.
+            Write-Host ""
+            Write-Host "--- No hay registros en '$logSeleccionado' ---"
+        }
 
     } else {
         # Si el usuario escribió cualquier otra cosa mostramos entre que rango tiene que elegir.
@@ -59,7 +69,4 @@ do {
 } while ($opcionNum -ne 0) # Vuelve al principio del menú (mientras no haya elegido "0").
 
 # Mensaje final.
-Write-Host "Script finalizado."
-
-# Mensaje final (solo se ve después de salir).
 Write-Host "Script finalizado."
