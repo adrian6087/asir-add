@@ -10,12 +10,13 @@ while ($opcion -ne "0") {
     Write-Host "2. Crear Unidad Organizativa"
     Write-Host "3. Ver miembros de una OU"
     Write-Host "4. Crear grupo"
-    Write-Host "5. Crear usuario (con grupo y cambio de pass)"
+    Write-Host "5. Crear usuario"
     Write-Host "0. Salir"
     
     $opcion = Read-Host "Elige una opcion"
 
     if ($opcion -eq "1") {
+        Write-Host ""
         # Mostrar datos del equipo, dominio y contar objetos
         Write-Host "Nombre del Equipo: $env:COMPUTERNAME"
         Write-Host "Dominio: $env:USERDNSDOMAIN"
@@ -31,6 +32,7 @@ while ($opcion -ne "0") {
     }
     
     elseif ($opcion -eq "2") {
+        Write-Host ""
         # Opcion 2: Crear una OU nueva en la raiz del dominio
         $nombreOU = Read-Host "Dime el nombre de la OU"
         
@@ -39,14 +41,16 @@ while ($opcion -ne "0") {
     }
     
     elseif ($opcion -eq "3") {
+        Write-Host ""
         # Opcion 3: Mostrar los usuarios guardados dentro de una OU
         $nombreOU = Read-Host "Dime de que OU quieres ver los usuarios"
         $rutaOU = "OU=$nombreOU,$dominio"
         
-        Get-ADUser -Filter * -SearchBase $rutaOU | Select-Object Name
+        Get-ADUser -Filter * -SearchBase $rutaOU | Select-Object Name | Out-Host
     }
     
     elseif ($opcion -eq "4") {
+        Write-Host ""
         # Opcion 4: Crear un grupo de seguridad global
         $nombreGrupo = Read-Host "Dime el nombre del grupo"
         $nombreOU = Read-Host "Dime en que OU lo guardo"
@@ -57,6 +61,7 @@ while ($opcion -ne "0") {
     }
     
     elseif ($opcion -eq "5") {
+        Write-Host ""
         # Opcion 5: Crear usuario con todos los requisitos
         $nombre = Read-Host "Nombre completo del usuario"
         $login = Read-Host "Login (ej. nombre.apellido)"
@@ -77,6 +82,7 @@ while ($opcion -ne "0") {
     }
 
     if ($opcion -ne "0") {
+        Write-Host ""
         Read-Host "Pulsa Enter para volver al menu..."
     }
 }
