@@ -16,12 +16,9 @@ while ($opcion -ne "0") {
     $opcion = Read-Host "Elige una opcion"
 
     if ($opcion -eq "1") {
-        # Opcion 1: Mostrar datos del equipo, dominio y contar objetos
+        # Mostrar datos del equipo, dominio y contar objetos
         Write-Host "Nombre del Equipo: $env:COMPUTERNAME"
-        
-        # Como ahora el dominio es automatico, sacamos el nombre de red (ej. adrian.aws)
-        $nombreRed = (Get-ADDomain).Name
-        Write-Host "Dominio: $nombreRed"
+        Write-Host "Dominio: $env:USERDNSDOMAIN"
         
         # Guardamos en variables la cantidad (.Count) de cada tipo de objeto
         $ous = (Get-ADOrganizationalUnit -Filter *).Count
